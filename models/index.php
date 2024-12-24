@@ -22,15 +22,30 @@ class USER {
         }
     }
 
-    public function afficherDetails() {
+    public function afficher_nom_Complet() {
         echo "Nom : $this->nom, Prénom : $this->prenom, Type : $this->type_utilisateur";
     }
+
+    public function changerNom($nouveauNom) {
+        $this->nom = $nouveauNom;
+    }
+
+    public function changerPrenom($nouveauPrenom) {
+        $this->prenom = $nouveauPrenom;
+    }
+
+
+
+
 }
 
 
 try {
     $user = new USER("Oumayma", "Bramid", "patient");
-    $user->afficherDetails();
+    $user->afficher_nom_Complet();
+    $user->changerNom("Sara");
+    $user->changerPrenom("El Amrani");
+    $user->afficher_nom_Complet();
 } catch (Exception $e) {
     echo "Erreur : " . $e->getMessage();
 }

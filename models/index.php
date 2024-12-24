@@ -1,36 +1,39 @@
-<?php
+<?php 
 
-// class Mere
-class USER{
+
+class USER {
     public $nom;
     public $prenom;
-    public $type_utilisateur=['medicine','patient'];
-    
+    public $type_utilisateur;
+
+
+    //definir un constructeur
+
+    public function __construct($nom, $prenom, $type_utilisateur) {
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+
+
+        $types_disponibles = ['medecine', 'patient'];
+        if (in_array($type_utilisateur, $types_disponibles)) {
+            $this->type_utilisateur = $type_utilisateur;
+        } else {
+            throw new Exception("Type utilisateur invalide : $type_utilisateur");
+        }
+    }
+
+    public function afficherDetails() {
+        echo "Nom : $this->nom, Prénom : $this->prenom, Type : $this->type_utilisateur";
+    }
 }
 
 
-// class Fils : herite class User 
-
-
-class PATIENT extends USER{
-
-   private $date_rendeZ_vous;
+try {
+    $user = new USER("Oumayma", "Bramid", "patient");
+    $user->afficherDetails();
+} catch (Exception $e) {
+    echo "Erreur : " . $e->getMessage();
 }
-
-
-
-
-// class Fils : herite USER 
-
-class MEDICINE extends USER{
-
-    private $specialiste;
-
-}
-
-
-
-
 
 
 
